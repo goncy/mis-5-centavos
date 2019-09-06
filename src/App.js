@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
+
+import ProjectsScreen from "./project/screens/Projects";
+import ProjectScreen from "./project/screens/Project";
+
+const Container = styled.div`
+  background: whitesmoke;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const Nav = styled.div`
+  height: 65px;
+  background-color: #333;
+  color: whitesmoke;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Content = styled.div`
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Nav>
+        <Link to="/">Proyectos</Link>
+      </Nav>
+      <Content>
+        <Switch>
+          <Route exact component={ProjectsScreen} path="/projects" />
+          <Route exact component={ProjectScreen} path="/projects/:id" />
+          <Redirect to="/projects" />
+        </Switch>
+      </Content>
+    </Container>
   );
 }
 
