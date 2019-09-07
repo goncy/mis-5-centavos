@@ -1,7 +1,7 @@
 import { database, firestore } from "../firebase";
 
 export default {
-  addDonation: (user, project, ammount) =>
+  addDonation: (user, project, ammount = 100) =>
     database
       .collection("projects")
       .doc(project)
@@ -9,6 +9,7 @@ export default {
         donations: firestore.FieldValue.arrayUnion({
           ammount,
           donor: user.uid,
+          avatar: user.photoURL,
           message: `${user.displayName} hizo una donacion`,
           timestamp: +new Date(),
         }),

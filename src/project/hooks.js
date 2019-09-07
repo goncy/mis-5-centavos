@@ -16,5 +16,5 @@ export function useProject(id) {
     actions: { addDonation },
   } = React.useContext(ProjectContext);
 
-  return [projects.find(project => project.id === id), (...args) => addDonation(id, ...args)];
+  return [projects.find(project => project.id === id), () => addDonation(id)];
 }

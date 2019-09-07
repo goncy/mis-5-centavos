@@ -12,8 +12,8 @@ const ProjectProvider = ({ children }) => {
   const [status, setStatus] = React.useState("init");
   const user = useUser();
 
-  function addDonation(project, ammount) {
-    return api.addDonation(user, project, ammount);
+  function addDonation(project) {
+    return api.addDonation(user, project);
   }
 
   const state = { projects };
