@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useUser } from "../session/hooks";
+
 import Loading from "./screens/Loading";
 import api from "./resources";
 
@@ -8,9 +10,14 @@ const ProjectContext = React.createContext();
 const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = React.useState([]);
   const [status, setStatus] = React.useState("init");
+  const user = useUser();
+
+  function addDonation(project, ammount) {
+    return api.addDonation(user, project, ammount);
+  }
 
   const state = { projects };
-  const actions = {};
+  const actions = { addDonation };
 
   React.useEffect(
     () =>

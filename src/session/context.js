@@ -9,12 +9,8 @@ const SessionProvider = ({ children }) => {
   const [user, setUser] = React.useState(null);
   const [status, setStatus] = React.useState("init");
 
-  function handleSignOut() {
-    auth.signOut();
-  }
-
   const state = { user };
-  const actions = { signOut: handleSignOut, signIn: auth.signIn };
+  const actions = { signOut: auth.signOut, signIn: auth.signIn };
 
   React.useEffect(
     () =>

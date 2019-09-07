@@ -11,7 +11,10 @@ export function useProjects() {
 }
 
 export function useProject(id) {
-  const projects = useProjects();
+  const {
+    state: { projects },
+    actions: { addDonation },
+  } = React.useContext(ProjectContext);
 
-  return projects.find(project => project.id === id);
+  return [projects.find(project => project.id === id), (...args) => addDonation(id, ...args)];
 }
