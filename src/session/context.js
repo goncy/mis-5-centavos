@@ -15,7 +15,7 @@ const SessionProvider = ({ children }) => {
   React.useEffect(
     () =>
       auth.onChange(user => {
-        setUser(user);
+        setUser({ id: user.uid, avatar: user.photoURL, name: user.displayName });
 
         setStatus("restored");
       }),

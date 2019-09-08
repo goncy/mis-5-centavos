@@ -1,16 +1,16 @@
 import { database, firestore } from "../firebase";
 
 export default {
-  addDonation: (user, project, ammount = 100) =>
+  addDonation: (project, user, ammount = 100) =>
     database
       .collection("projects")
       .doc(project)
       .update({
         donations: firestore.FieldValue.arrayUnion({
           ammount,
-          donor: user.uid,
-          avatar: user.photoURL,
-          message: `${user.displayName} hizo una donacion`,
+          donor: user.id,
+          avatar: user.avatar,
+          message: `${user.name} hizo una donacion`,
           timestamp: +new Date(),
         }),
       }),
@@ -23,7 +23,7 @@ export default {
           return {
             id: doc.id,
             ...project,
-            funded: project.donations.reduce((founded, donation) => founded + donation.ammount, 0),
+            funded: project.donations.reduce((funded, donation) => funded + donation.ammount, 0),
           };
         })
       )

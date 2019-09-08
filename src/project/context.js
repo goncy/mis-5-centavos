@@ -13,7 +13,7 @@ const ProjectProvider = ({ children }) => {
   const user = useUser();
 
   function addDonation(project) {
-    return api.addDonation(user, project);
+    return api.addDonation(project, user);
   }
 
   const state = { projects };
