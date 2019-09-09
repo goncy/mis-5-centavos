@@ -23,17 +23,19 @@ const Donation = styled.tr`
 
 const Donations = ({ data }) => (
   <table>
-    {data.map(({ ammount, avatar, message }, index) => (
-      <Donation key={index}>
-        <td className="ammount">
-          <Currency>{ammount}</Currency>
-        </td>
-        <td>
-          <img alt="avatar" className="avatar" src={avatar} />
-        </td>
-        <td>{message}</td>
-      </Donation>
-    ))}
+    <tbody>
+      {data.map(({ ammount, avatar, message }, index) => (
+        <Donation key={index}>
+          <td className="ammount">
+            <Currency>{ammount}</Currency>
+          </td>
+          <td>
+            <img alt="avatar" className="avatar" src={avatar} />
+          </td>
+          <td>{message}</td>
+        </Donation>
+      ))}
+    </tbody>
   </table>
 );
 
